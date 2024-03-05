@@ -1,0 +1,36 @@
+.img-front {
+    height: 300px;
+}
+
+.img-front img {
+    height: 300px;
+    aspect-ratio: 16/9;   
+}
+
+.img-backed {
+    width: 300px;
+    aspect-ratio: 16/9;
+}
+
+.boton {
+    width: 20%;
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    margin-bottom: 20px;
+    width: 250px;
+   
+}
+
+.btn i {
+    display: block;
+    color: black;
+}
+
+.row, .isotope-grid {
+    height: 100% !important;
+    position: static !important;
+}
+
