@@ -44,11 +44,11 @@ class TiendecillaController extends Controller {
     
     function producto(Request $request) {
         $productos = Producto::orderBy('nombre', 'asc')->paginate(12);
-        $chart = $request->session()->get('chart', null);
+        $chart = $request->session()->get('chart');
         if($chart == null) {
             $chart = new Chart();
         }
-        return response()->json(['productos' => $productos, 'chart' => $chart]);
+        return response()->json(['productos' => $productos]);
     }
     
     function tienda() {

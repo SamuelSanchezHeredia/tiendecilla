@@ -60,10 +60,12 @@ let agregarEventoAddChart = (data) => {
         let addChartButtons = document.querySelectorAll('#btnChart');
         addChartButtons.forEach(button => {
             button.addEventListener('click', (event) => {
-                let idProducto = event.target.id; 
+                let idProducto = event.target.dataset.productoId; 
+                console.log(idProducto);
                 let producto = data.productos.data.find(p => p.id == idProducto);
-                console.log(data.productos.data);
+                console.log(producto);
                 if (producto) {
+                    console.log('Hola')
                     carrito.push(producto);
                     localStorage.setItem('carrito', JSON.stringify(carrito));
                     generarCarrito();
@@ -118,7 +120,6 @@ let agregarEventoAddChart = (data) => {
 
         carrito.forEach(producto => {
              let productoElement = document.createElement('li');
-             productoElement.classList.add('header-cart-item', 'flex-t m-b-12');
              productoElement.innerHTML = `
 						<div class="header-cart-item-img">
 							<img src="data:imagen/jpeg;base64,${producto.cover}">
@@ -134,7 +135,7 @@ let agregarEventoAddChart = (data) => {
 							</span>
 						
 							 <div>
-                                <a href="#" class="product-remove" id="btnDelete">Remove</a>
+                                <a href="#" class="product-remove" id="btnDelete">Borrar</a>
                             </div>
 						</div>`
                     ;
@@ -142,7 +143,15 @@ let agregarEventoAddChart = (data) => {
         let enlaceEliminar = productoElement.querySelector('.product-remove');
         enlaceEliminar.addEventListener('click', (event) => {
             let idProducto = event.target.dataset.id;
-            carrito.splice(idProducto, 1);
+            carrito.splice(idProducto,1);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+            generarCarrito();
+        });
+        
+        let enlaceEliminarTotal = document.getElementById('btnDeleteTotal');
+        enlaceEliminarTotal.addEventListener('click', (event) => {
+            let idProducto = event.target.dataset.id;
+            carrito.splice(idProducto);
             localStorage.setItem('carrito', JSON.stringify(carrito));
             generarCarrito();
         });
